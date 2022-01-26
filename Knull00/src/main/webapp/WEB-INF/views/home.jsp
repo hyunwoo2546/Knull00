@@ -11,29 +11,34 @@
 
 	<h1 align="center">나는야 루피!</h1>
 
-	<div id = "divIu">
-		<img alt="아이유" src="resources/img/iu.jpg" height="400" width="300">
-		<br/>
-		<audio src="resources/audio/MamiSon_Loveis.mp3" controls="controls"></audio>
-	</div>
+	<nav>
+		<div id = "divIu">
+			<img alt="아이유" src="resources/img/iu.jpg" height="400" width="300">
+			<br/>
+			<audio src="resources/audio/MamiSon_Loveis.mp3" controls="controls"></audio>
+		</div>
+	</nav>
 	
-	<div id = "divVideo">
-		<video autoplay="autoplay" muted="muted" controls="controls" width="500" >
-			<source src="resources/video/bandicam 2022-01-21 02-18-52-772.mp4">
-			<source src="resources/video/bandicam 2022-01-21 02-18-52-772 -.webm">
-		</video>
-	</div>
+	<main>
+		<div id = "divVideo">
+			<video autoplay="autoplay" muted="muted" controls="controls" width="500" >
+				<source src="resources/video/bandicam 2022-01-21 02-18-52-772.mp4">
+				<source src="resources/video/bandicam 2022-01-21 02-18-52-772 -.webm">
+			</video>
+		</div>
+	</main>
 	
-	<div id = "divUpload">
-		<form action="exUploadPost" method="post" enctype="multipart/form-data">
-			<input type="file" name="files"><br/>
-			<input type="file" name="files"><br/>
-			<input type="file" name="files"><br/>
-			<input type="file" name="files"><br/>
-			<input type="file" name="files"><br/>
-			<input type="submit">
-		</form>
-	</div>
-	
+	<footer>
+		<div id = "divUpload">
+			<form action="exUploadPost" method="post" enctype="multipart/form-data">
+				<input type="file" name="files"><br/>
+				<input type="file" name="files"><br/>
+				<input type="file" name="files"><br/>
+				<input type="file" name="files"><br/>
+				<input type="file" name="files"><br/>
+				<input type="submit">
+			</form>
+		</div>
+	</footer>
 </body>
 </html>

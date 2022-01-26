@@ -6,17 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
+	<!-- # 전체 게시물 조회 -->
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
 		<![CDATA[
 			select * from tbl_board where bno > 0
 		]]>	
 	</select>
 	
+	<!-- # 추가 -->
 	<insert id="insert">
 		insert into tbl_board (bno,title,content,writer)
 		values (seq_board.nextval, #{title}, #{content}, #{writer})
 	</insert>
 	
+	<!-- # 추가 (PK : bno) -->
 	<insert id="insertSelectKey">
 		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
 			select seq_board.nextval from dual
@@ -26,14 +29,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (#{bno}, #{title}, #{content}, #{writer})
 	</insert>
 	
+	<!-- # 게시물 조회 -->
 	<select id="read" resultType="org.zerock.domain.BoardVO">
 		select * from tbl_board where bno = #{bno}
 	</select>
 	
+	<!-- # 삭제 -->
 	<delete id="delete">
 		delete from tbl_board where bno = #{bno}
 	</delete>
 	
+	<!-- # 수정 -->
 	<update id="update">
 		update tbl_board
 		set

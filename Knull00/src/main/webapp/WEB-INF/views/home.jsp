@@ -24,9 +24,16 @@
 		</video>
 	</div>
 	
-	<form action="">
-		<input type="text">
-	</form>
+	<div id = "divUpload">
+		<form action="exUploadPost" method="post" enctype="multipart/form-data">
+			<input type="file" name="files"><br/>
+			<input type="file" name="files"><br/>
+			<input type="file" name="files"><br/>
+			<input type="file" name="files"><br/>
+			<input type="file" name="files"><br/>
+			<input type="submit">
+		</form>
+	</div>
 	
 </body>
 </html>

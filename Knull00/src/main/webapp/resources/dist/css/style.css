@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#divIu {
+	width: 300;
+	
+	border: 3px black solid;
+	
+	align-items: center;
+}
+
+#audioSize {
+	width: 200px;
+	
+}

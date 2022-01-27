@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" href="resources/css/style.css">
+	<link type="text/css" rel="stylesheet" href="resources/css/style.css">
 	<script type="text/javascript" src="resources/js/OuterJavaScript.js"></script>
 </head>
 <body>

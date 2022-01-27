@@ -1,19 +1,7 @@
 @charset "UTF-8";
 
+
 h1 {
-	color: black;
-	background : white;
+	color: white;
+	background: black;
 }
-
-#divIu {
-	border: 3px solid black;
-}
-
-/* #divVideo {
-	position: absolute;
-	margin-left: 500px;
-}
-
-#divUpload {
-	margin-top: 500px;
-}  */

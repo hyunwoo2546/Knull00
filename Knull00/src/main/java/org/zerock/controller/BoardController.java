@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
@@ -36,6 +37,33 @@ public class BoardController {
 		
 		rttr.addFlashAttribute("result",boardVO.getBno());
 		
+		return "redirect:/board/list";
+	}
+	
+	@GetMapping("/get")
+	public void get(@RequestParam("bno") Long bno, Model model) {
+		log.info("get......");
+		model.addAttribute("board", service.get(bno));
+	}
+	
+	@PostMapping("/modify")
+	public String modify(BoardVO boardVO, RedirectAttributes rttr) {
+		
+		log.info("게시글 수정......." + boardVO);
+		
+		if(service.modify(boardVO)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/board/list";
+	}
+	
+	@PostMapping("/remove")
+	public String delete(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+		log.info("삭제 처리.......");
+
+		if(service.remove(bno)) {
+			rttr.addFlashAttribute("result", "sucess");
+		}
 		return "redirect:/board/list";
 	}
 	

@@ -50,6 +50,38 @@ public class BoardControllerTests {
 				).andReturn().getModelAndView().getViewName();
 		
 		log.info(resultPage);
+	}
+	
+	@Test
+	public void testGet() throws Exception{
+		
+		log.info(mockMvc.perform(MockMvcRequestBuilders
+				.get("/board/get")
+				.param("bno", "5"))
+				.andReturn()
+				.getModelAndView().getModelMap());
+	}
+	
+	@Test
+	public void testModify() throws Exception {
+		
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
+				.param("bno", "5")
+				.param("title", "수정된 제목")
+				.param("content", "수정된 내용")
+				.param("writer", "user00"))
+				.andReturn().getModelAndView().getViewName();
+		
+		log.info(resultPage);
+	}
+	
+	@Test
+	public void testRemove() throws Exception{
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
+				.param("bno", "5")
+				).andReturn().getModelAndView().getViewName();
+		
+		log.info("테스트 삭제처리..... " + resultPage);
 		
 	}
 	

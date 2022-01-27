@@ -6,15 +6,14 @@ h1 {
 }
 
 #divIu {
-	position: absolute;
-	border: 3px solid blue;
+	border: 3px solid black;
 }
 
-#divVideo {
+/* #divVideo {
 	position: absolute;
 	margin-left: 500px;
 }
 
 #divUpload {
 	margin-top: 500px;
-}
+}  */

@@ -47,5 +47,10 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <div>
+            	<form action="/board/register">
+            		<button>등록페이지 이동</button>
+            	</form>
+            </div>
             
 	<%@ include file="../includes/footer.jsp" %>

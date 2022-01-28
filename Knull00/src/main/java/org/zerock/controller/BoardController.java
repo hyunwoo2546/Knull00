@@ -28,6 +28,13 @@ public class BoardController {
 		model.addAttribute("list", service.getList());
 	}
 	
+	/* # 글 등록 페이지 이동 */
+	@GetMapping("/register")
+	public void register() {
+		
+	}
+	
+	/* # 글 등록 처리 */
 	@PostMapping("/register")
 	public String register(BoardVO boardVO, RedirectAttributes rttr) {
 		

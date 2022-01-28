@@ -19,21 +19,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/resources/dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-    </script>
 	
 	<!-- # 반응형 웹에서 모바일로 넘어 갈 때 메뉴 펴짐 방지. -->
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function () {
 			$('#dataTables-example').DataTable({
-				responsive : true;
+				responsive : true
 			});
 			$(".sidebar-nav")
 			.attr("class","sidebar-nav navbar-collapse collapse")

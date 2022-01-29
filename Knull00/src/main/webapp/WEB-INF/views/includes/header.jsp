@@ -57,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">나는 강현우, 해적왕이 될 남자지</a>
+                <a class="navbar-brand" href="list">나는 강현우, 해적왕이 될 남자지</a>
             </div>
             <!-- /.navbar-header -->
 

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-    ㅁㄴㅇㅁ
     <%@ include file="../includes/header.jsp" %>
             <div class="row">
                 <div class="col-lg-12">
@@ -15,7 +14,9 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">안녕?
-                            <button id = 'regBtn' type="button" class="btn btn-xs pull-right">글 등록 페이지 이동</button>
+                            <button id = 'regBtn' type="button" class="btn btn-primary pull-right">
+                            <font face="돋움">글 등록 페이지 이동</font>
+                            </button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -32,7 +33,11 @@
                                 <c:forEach items="${list}" var = "board">
                                 	<tr>
                                 		<td><c:out value="${board.bno}"></c:out></td>
-                                		<td><c:out value="${board.title}"></c:out></td>
+                                		<td>
+                                			<a href="/board/get?bno=<c:out value="${board.bno }"/>">
+                                				<c:out value="${board.title}"></c:out>
+                                			</a>
+                                		</td>
                                 		<td><c:out value="${board.writer}"></c:out></td>
                                 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }" /></td>
                                 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }" /></td>
@@ -82,10 +87,14 @@
 					
 					checkModal(result);
 					
+					
 					/* # 체크 모달 함수*/
+					
+					/*	체크 모달 함수에 쓰이는 "result" 변수는 BoardController의 메소드 중 
+					addFlashAttribute("result")와 같은 함수에 매개변수로 쓰여서 값이 날아옴.  */
 					function checkModal(result) {
 						
-						if(result === ''){
+						if (result === '' || history.state){
 							return;
 						}
 						

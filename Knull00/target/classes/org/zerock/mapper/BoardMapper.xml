@@ -50,4 +50,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where bno = #{bno}
 	</update>
 	
+	<!-- # 페이징 -->
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+			select
+				bno, title, content, regdate, updateDate
+				from
+				(
+					select
+					/*+ index_desc(tbl_board pk_board) */
+					rownum rn, bno, title, content, writer, regdate, updateDate
+					from tbl_board
+					where rownum <= #{pageNum} * #{amount}
+				)
+				where rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
 </mapper>

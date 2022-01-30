@@ -40,7 +40,7 @@
 	                           		<label>작성자</label>
 	                           		<input class="form-control" name="writer"
 	                           		value='<c:out value="${board.writer }"/>'
-	                           		readonly="readonly">
+	                           		>
 	                           	</div>
 	                           	<div class="form-group">
 	                           		<!-- <label>작성일시</label> -->
@@ -67,5 +67,31 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            
+            
+            <!-- # button에 'data-oper' 속성을 이용하기 위해 e.preventDefalut()로
+            기본 동작을 막고 마지막에 직접 submit()을 수행시킴. --> 
+            <script type="text/javascript">
+				$(document).ready(function () {
+					var formObj = $("form");
+					
+					$('button').on("click", function (e) {
+						e.preventDefalut();
+						
+						var operation = $(this).data("oper");
+						
+						console.log(operation);
+						
+						if(operation === 'remove') {
+							formObj.attr("action", "board/remove");
+						} else if(operation === 'list'){
+							formObj = null;
+							self.location = "/board/list";
+							return;
+						}
+						formObj.submit();
+					});
+				});
+			</script>
             
 	<%@ include file="../includes/footer.jsp" %>

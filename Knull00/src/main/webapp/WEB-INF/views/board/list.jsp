@@ -20,7 +20,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-striped table-bordered table-hover" >
                                 <thead>
                                     <tr>
                                         <th>#번호</th>
@@ -30,11 +30,12 @@
                                         <th>수정일</th>
                                     </tr>
                                 </thead>
+                                <!-- # 게시판 리스트 출력 -->
                                 <c:forEach items="${list}" var = "board">
                                 	<tr>
                                 		<td><c:out value="${board.bno}"></c:out></td>
                                 		<td>
-                                			<a href="/board/get?bno=<c:out value="${board.bno }"/>">
+                                			<a class='move' href='<c:out value="${board.bno }"/>'>
                                 				<c:out value="${board.title}"></c:out>
                                 			</a>
                                 		</td>
@@ -43,28 +44,35 @@
                                 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }" /></td>
                                 	</tr>
                                 </c:forEach>
+                                <!-- # /End 게시판 리스트 출력 -->
                             </table>
 
-							<!-- # 페이지 처리 부분 -->                            
-                            <div class="pull right">
-                            	<ul class="pagination">
-                            		<c:if test="${pageMaker.prev}">
-                            			<li class="paginate_button previous">
-                            				<a href="#">이전</a>
-                            			</li>
-                            		</c:if>
-                            		
-                            		<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                            			<li class="paginate_button"><a href="#">${num}</a></li>
-                            		</c:forEach>
-                            		
-                            		<c:if test="${pageMaker.next}">
-                            			<li class="paginate_button next">
-                            				<a href="#">다음</a>
-                            			</li>
-                            		</c:if>
-                            	</ul>
-                            </div>
+							<!-- # 페이지 처리 부분 -->    
+							<form action="/board/list" id = "actionForm" method="get">
+								<input type="hidden" name = "pageNum" value="${pageMaker.cri.pageNum }">                       
+								<input type="hidden" name = "amount" value="${pageMaker.cri.amount }">                       
+	                            <div class="pull-right">
+	                            	<ul class="pagination">
+	                            		<c:if test="${pageMaker.prev}">
+	                            			<li class="paginate_button">
+	                            				<a href="${pageMaker.startPage - 1}">이전</a>
+	                            			</li>
+	                            		</c:if>
+	                            		
+	                            		<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+	                            			<li class="paginate_button" ${pageMaker.cri.pageNum == num ? "active":""}>
+	                            			<a href="${num}">${num}</a></li>
+	                            		</c:forEach>
+	                            		
+	                            		<c:if test="${pageMaker.next}">
+	                            			<li class="paginate_button">
+	                            				<a href="${pageMaker.endPage + 1}">다음</a>
+	                            			</li>
+	                            		</c:if>
+	                            	</ul>
+	                            </div>
+                            </form>
+                            <!-- # End 페이지 처리 -->
                             
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -96,20 +104,13 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div>
-            	<form action="/board/register">
-            		<button>등록페이지 이동</button>
-            	</form>
-            </div>
             
             <script type="text/javascript">
 				$(document).ready (function () {
 					var result = '<c:out value="${result}"/>';
 					
-					checkModal(result);
-					
-					
 					/* # 체크 모달 함수*/
+					checkModal(result);
 					
 					/*	체크 모달 함수에 쓰이는 "result" 변수는 BoardController의 메소드 중 
 					addFlashAttribute("result")와 같은 함수에 매개변수로 쓰여서 값이 날아옴.  */
@@ -131,7 +132,28 @@
 						self.location = "/board/register";
 					});
 					
+					/* # 페이징 처리 함수 */
+					var actionForm = $("#actionForm");
+					
+					$(".paginate_button a").on("click", function (e) {
+						e.preventDefault();
+						
+						console.log('click');
+						
+						actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+						actionForm.submit();
+					});
+					
+					$(".move").on("click", function (e) {
+						e.preventDefault();
+						actionForm.append("<input type = 'hidden' name = 'bno' value = '"+
+								$(this).attr("href")+"'>");
+						actionForm.attr("action","/board/get");
+						actionForm.submit();
+					});
+					
 				});
+				
 			</script>
             
 	<%@ include file="../includes/footer.jsp" %>

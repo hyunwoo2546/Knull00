@@ -20,8 +20,10 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         	<form action="/board/modify" role="form" method="post">
-                        		<input type="hidden" name = "pageNum" value="${cri.pageNum }">
-                        		<input type="hidden" name = "amount" value="${cri.amount }">
+                        		<input type="hidden" name = "pageNum" value='<c:out value = "${cri.pageNum }"/>'>
+                        		<input type="hidden" name = "amount" value='<c:out value = "${cri.amount }" />'>
+                        		<input type="hidden" name = "keyword" value='<c:out value = "${cri.keyword }" />'>
+                        		<input type="hidden" name = "type" value='<c:out value = "${cri.type }" />'>
 	                           	<div class="form-group">
 	                           		<label>글 번호</label>
 	                           		<input class="form-control" name="bno"
@@ -90,10 +92,14 @@
 							formObj.attr("action", "/board/list").attr("method","get");
 							var pageNumTag = $("input[name='pageNum']").clone();
 							var amountTag = $("input[name='amount']").clone();
+							var keywordTage = $("input[name='keyword']").clone();
+							var typeTag = $("input[name='type']").clone();
 							
 							formObj.empty();
 							formObj.append(pageNumTag);
 							formObj.append(amountTag);
+							formObj.append(keywordTage);
+							formObj.append(typeTag);
 						}
 						formObj.submit();
 					});

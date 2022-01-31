@@ -50,6 +50,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where bno = #{bno}
 	</update>
 	
+	<!-- # 검색 조건 처리 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	<!-- # 페이징 -->
 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
 		<![CDATA[
@@ -61,14 +81,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					/*+ index_desc(tbl_board pk_board) */
 					rownum rn, bno, title, content, writer, regdate, updateDate
 					from tbl_board
-					where rownum <= #{pageNum} * #{amount}
+					where
+		]]>
+		
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+				rownum <= #{pageNum} * #{amount}
 				)
-				where rn > (#{pageNum} - 1) * #{amount}
+			where rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
 	
+	<!-- # 총 게시글 수 -->
 	<select id="getTotalCount" resultType="int">
-		select count(*) from tbl_board where bno > 0
+		select count(*) from tbl_board where
+		<include refid="criteria"></include>
+		bno > 0
 	</select>
 	
 </mapper>

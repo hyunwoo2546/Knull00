@@ -100,4 +100,15 @@ public class BoardMapperTests {
 		
 	}
 	
+	@Test
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("¼¼·Î");
+		cri.setType("");
+		
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(board -> log.info(board));
+	}
+	
 }

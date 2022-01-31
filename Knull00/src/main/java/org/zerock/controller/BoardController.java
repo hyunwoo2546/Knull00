@@ -29,7 +29,12 @@ public class BoardController {
 		log.info("list : " + cri);
 		
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, 1230)); 
+		
+		int total = service.getTotal(cri);
+		
+		log.info("total : " + total);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total)); 
 	}
 	
 	/* # 글 등록 페이지 이동 */
@@ -58,23 +63,31 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO boardVO, RedirectAttributes rttr) {
+	public String modify(BoardVO boardVO, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		log.info("게시글 수정......." + boardVO);
 		
 		if(service.modify(boardVO)) {
 			rttr.addFlashAttribute("result", "success");
 		}
+		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		
 		return "redirect:/board/list";
 	}
 	
 	@PostMapping("/remove")
-	public String delete(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+	public String delete(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("삭제 처리.......");
 
 		if(service.remove(bno)) {
 			rttr.addFlashAttribute("result", "sucess");
 		}
+		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		
 		return "redirect:/board/list";
 	}
 	

@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
 		<![CDATA[
 			select
-				bno, title, content, regdate, updateDate
+				bno, title, writer, content, regdate, updateDate
 				from
 				(
 					select
@@ -65,6 +65,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				)
 				where rn > (#{pageNum} - 1) * #{amount}
 		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_board where bno > 0
 	</select>
 	
 </mapper>

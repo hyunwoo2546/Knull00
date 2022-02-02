@@ -1,9 +1,12 @@
 package org.zerock.controller;
 
-import org.springframework.http.MediaType;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.zerock.domain.SampleVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -12,12 +15,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class TestController {
 
-	@GetMapping(value = "/getText", produces = "text/plain; charset=UTF-8")
-	public String getTest() {
+	@GetMapping(value = "/getText")
+	public List<SampleVO> getTest() {
+
+		return IntStream.range(1, 10).mapToObj(i -> new SampleVO(i, i + "First", i + "Last")).collect(Collectors.toList());
 		
-		log.info("MIME : " + MediaType.TEXT_PLAIN_VALUE);
-		
-		return "æ»≥Á«œººø‰";
 	}
 	
 }

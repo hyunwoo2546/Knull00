@@ -1,5 +1,6 @@
 package org.zerock.mapper;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
@@ -7,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
 
 import lombok.Setter;
@@ -24,17 +26,12 @@ public class ReplyMapperTests {
 	
 	@Test
 	public void testMapper() {
-
-		IntStream.rangeClosed(1, 10).forEach(i -> {
-			
-			ReplyVO vo = new ReplyVO();
-			
-			vo.setBno(bnoArr[i % 5]);
-			vo.setReply("댓글 테스트" + i);
-			vo.setReplyer("댓글 작성자" + i);
-			
-			mapper.insert(vo);
-		});
+		
+		Criteria cri = new Criteria();
+		
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[3]);
+		
+		replies.forEach(reply -> log.info(reply));
 		
 	}
 

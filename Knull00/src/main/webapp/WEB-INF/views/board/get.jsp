@@ -75,14 +75,35 @@
             	
             	var bnoValue = '<c:out value="${board.bno}" />';
             	
-            	replyService.add(
-            		{reply:"JS TEST", replyer:"tester", bno : bnoValue},
-            		function (result) {
-						alert("Result : " + result);
+            	/* # 댓글 전체 조회 */
+            	replyService.getList({bno:bnoValue , page:1}, function(list){
+					for(var i = 0, len = list.length||0; i < len; i++ ) {
+						console.log(list[i]);
 					}
-            	);
-            
+				});
+            	
+            	/* # 댓글 삭제 */
+            	/* replyService.remove(41, function (count) {
+					console.log("10번 댓글 삭제....");
+					console.log(count);
+					
+					if(count === "success") {
+						alert("댓글 삭제 완료...");
+					}
+				}, function (err) {
+					alert("에러....");
+				}); */
+            	
+            	/* # 댓글 수정 */
+            	replyService.update({
+            		rno : 2,
+            		bno : bnoValue,
+            		reply : "지금 우리 학교는"
+            	}, function (result) {
+					alert("수정완료....");
+				});
             </script>
+            
            	<script type="text/javascript">
 				$(document).ready(function() {
 				  

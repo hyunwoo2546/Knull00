@@ -67,6 +67,22 @@
             </div>
             <!-- /.row -->
             
+            <script type="text/javascript" src="/resources/js/reply.js"></script>
+            <script type="text/javascript">
+            	
+            	console.log("=========");
+            	console.log("JS TEST");
+            	
+            	var bnoValue = '<c:out value="${board.bno}" />';
+            	
+            	replyService.add(
+            		{reply:"JS TEST", replyer:"tester", bno : bnoValue},
+            		function (result) {
+						alert("Result : " + result);
+					}
+            	);
+            
+            </script>
            	<script type="text/javascript">
 				$(document).ready(function() {
 				  

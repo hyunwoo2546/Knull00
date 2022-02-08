@@ -39,7 +39,7 @@
 		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
 			function(data) {
 				if(callback) {
-					callback(data);
+					callback(data.replyCnt,data.list); // 댓글 숫자와 목록을 가져오는 경우
 				}
 			}).fail(function(xhr,status,err) {
 				if(error) {
@@ -111,7 +111,7 @@
 		if(gap <(1000*60*60*24)) {
 			var hh = dateObj.getHours();
 			var mi = dateObj.getMinutes();
-			var ss = dateObj.getsetSeconds();
+			var ss = dateObj.getSeconds();
 			
 			return [(hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
 			':', (ss > 9 ? ':' : '0') + ss].join('');

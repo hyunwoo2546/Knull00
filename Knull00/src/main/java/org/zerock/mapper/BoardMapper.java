@@ -2,6 +2,7 @@ package org.zerock.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -28,6 +29,10 @@ public interface BoardMapper {
 	/* # ÆäÀÌÂ¡ */
 	public List<BoardVO> getListWithPaging(Criteria cri);
 	
+	/* # ÃÑ °Ô½Ã¹° */
 	public int getTotalCount(Criteria cri);
+	
+	/* # ´ñ±Û Ä«¿îÆ® */
+	public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
 	
 }

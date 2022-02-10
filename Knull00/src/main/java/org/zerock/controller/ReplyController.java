@@ -3,7 +3,6 @@ package org.zerock.controller;
 
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

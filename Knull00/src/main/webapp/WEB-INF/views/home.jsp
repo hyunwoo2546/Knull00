@@ -31,11 +31,7 @@
 	<footer>
 		<div>
 			<form action="exUploadPost" method="post" enctype="multipart/form-data">
-				<input type="file" name="files"><br/>
-				<input type="file" name="files"><br/>
-				<input type="file" name="files"><br/>
-				<input type="file" name="files"><br/>
-				<input type="file" name="files"><br/>
+				<input type="file" name="files" multiple><br/>
 				<input type="submit">
 			</form>
 		</div>

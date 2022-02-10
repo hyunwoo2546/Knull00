@@ -71,28 +71,56 @@
 	<ul></ul>
 </div>
 
+<div class="bigPictureWrapper">
+	<div class="bigPicture">
+	</div>
+</div>
+
 <button id="uploadBtn">업로드</button>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
 <script type="text/javascript">
+
+	/* # 원본 이미지 보여주기 */
+	function showImage(fileCallPath) {
+		
+		$(".bigPictureWrapper").css("display","flex").show();
+		
+	    $(".bigPicture")
+	    .html("<img src = '/display?fileName="+encodeURI(fileCallPath)+"'>")
+	    .animate({width:'100%',height:'100%'},1000);
+	    
+	    $(".bigPictureWrapper").on("click", function (e) {
+			$(".bigPicture").animate({width:'0%', height:'0%'},1000);
+			setTimeout(() => {
+				$(this).hide();
+			},1000);
+		});
+	}
+
 	$(document).ready(function () {
 		
-		/* # 첨부 파일 목록 */
 		var uploadResult = $(".uploadResult ul");
 		
+		/* # 첨부 파일 */
 		function showUploadedFile(uploadResultArr) {
 			var str = "";
 			
 			$(uploadResultArr).each(function (i,obj) {
 				
 				if(!obj.image) {
-					str += "<li><img src = '/resources/img/attach.png'>"
-					+obj.fileName+"</li>"; 
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+					str += "<li><a href = '/download?fileName="+fileCallPath+"'>"
+							+"<img src = '/resources/img/attach.png'>" + obj.fileName + "</a></li>";
 				} else {
-					var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-					str += "<li><img src = '/display?fileName="+fileCallPath+"'></li>";
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/S_" + obj.uuid + "_" + obj.fileName);
+					var originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
+					
+					originPath = originPath.replace(new RegExp(/\\/g),"/"); 
+					str += "<li><a href = \"javascript:showImage(\'"+originPath+"\')\">"
+							+"<img src = '/display?fileName="+fileCallPath+"'></a></li>";
 				}
 			});
 			
@@ -157,6 +185,5 @@
 		});
 	});
 </script>
-
 </body>
 </html>

@@ -24,6 +24,7 @@ public class BoardController {
 
 	private BoardService service;
 
+	/* # 게시판 리스트 */
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		log.info("list : " + cri);
@@ -56,12 +57,14 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	/* # 글 보기 & 수정 */
 	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("get or modify.....");
 		model.addAttribute("board", service.get(bno));
 	}
 	
+	/* # 글 수정 */
 	@PostMapping("/modify")
 	public String modify(BoardVO boardVO, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
@@ -74,6 +77,7 @@ public class BoardController {
 		return "redirect:/board/list" + cri.getListLink();
 	}
 	
+	/* # 글 삭제 */
 	@PostMapping("/remove")
 	public String delete(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("삭제 처리.......");

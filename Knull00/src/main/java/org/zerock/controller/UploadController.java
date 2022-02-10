@@ -11,10 +11,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -66,6 +68,7 @@ public class UploadController {
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxAction(MultipartFile[] uploadFile) {
+
 		
 		log.info("update ajax post....");
 		
@@ -112,7 +115,7 @@ public class UploadController {
 					attachFileDTO.setImage(true);
 					
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"S_" + uploadFileName));
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100,100);
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(),thumbnail,100,100);
 					
 					thumbnail.close();
 				}
@@ -125,5 +128,27 @@ public class UploadController {
 		}
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
-	
+
+	/* # 썸네일 데이터 전송 */
+	@GetMapping("/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile(String fileName) {
+		
+		log.info("fileName : " + fileName);
+		File file = new File("c:\\upload\\" + fileName);
+		
+		log.info("file : " + file);
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			
+			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),headers,HttpStatus.OK);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

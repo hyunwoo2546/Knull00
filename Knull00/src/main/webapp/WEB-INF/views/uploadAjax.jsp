@@ -86,14 +86,22 @@
 			var str = "";
 			
 			$(uploadResultArr).each(function (i,obj) {
-				str += "<li>"+obj.fileName+"</li>" 
+				
+				if(!obj.image) {
+					str += "<li><img src = '/resources/img/attach.png'>"
+					+obj.fileName+"</li>"; 
+				} else {
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+					str += "<li><img src = '/display?fileName="+fileCallPath+"'></li>";
+				}
 			});
+			
 			uploadResult.append(str);
 		}
 		
 		/* # 파일 업로드 확장자 제한 */
 	
-		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|torrent)$");
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		var maxSize = 5242880;
 		
 		function checkExtension(fileName, fileSize) {

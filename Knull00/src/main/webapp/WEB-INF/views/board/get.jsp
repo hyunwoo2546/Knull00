@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
+%>
     
     <%@ include file="../includes/header.jsp" %>
             <div class="row">
@@ -83,10 +89,10 @@
 	                       		<li class="left clearfix" data-rno ='12'>
 	                       			<div>
 	                       				<div class="header">
-	                       					<strong class="primary-font">user00</strong>
-	                       					<small class="pull-right text-muted">2022-02-07 02:30</small>
+	                       					<strong class="primary-font"></strong>
+	                       					<small class="pull-right text-muted"><%= sf.format(nowTime) %></small>
 	                       				</div>
-	                       				<p>Good Job!</p>
+	                       				<p></p>
 	                       			</div>
 	                       		</li>
 	                       	</ul>

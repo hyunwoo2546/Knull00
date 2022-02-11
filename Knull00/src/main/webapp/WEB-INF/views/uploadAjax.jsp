@@ -104,33 +104,40 @@
 		
 		var uploadResult = $(".uploadResult ul");
 		
-		/* # 첨부 파일 */
-		function showUploadedFile(uploadResultArr) {
-			var str = "";
-			
-			$(uploadResultArr).each(function (i,obj) {
-				
-				if(!obj.image) {
-					var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
-					var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-					
-					str += "<li><div><a href = '/download?fileName="+fileCallPath+"'>"
-							+"<img src = '/resources/img/attach.png'>" + obj.fileName + "</a>" 
-							+"<span data-file=\'"+fileCallPath+"\' data-type='file'> x </span>" 
-							+"</div></li>";
-				} else {
-					var fileCallPath = encodeURIComponent(obj.uploadPath + "/S_" + obj.uuid + "_" + obj.fileName);
-					var originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
-					
-					originPath = originPath.replace(new RegExp(/\\/g),"/"); 
-					str += "<li><a href = \"javascript:showImage(\'"+originPath+"\')\">"
-							+"<img src = '/display?fileName="+fileCallPath+"'></a>"
-							+"<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"
-							+"</li>";
-				}
-			});
-			
-			uploadResult.append(str);
+		/* # 첨부파일 업로드 */
+		function showUploadedFile(uploadResultArr){
+			 
+		   var str = "";
+		   
+		   $(uploadResultArr).each(function(i, obj){
+		     
+		     if(!obj.image){
+		       
+		       var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);
+		       
+		       var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+		       
+		       str += "<li><div><a href='/download?fileName="+fileCallPath+"'>"+
+		           "<img src='/resources/img/attach.png'>"+obj.fileName+"</a>"+
+		           "<span data-file=\'"+fileCallPath+"\' data-type='file'> x </span>"+
+		           "<div></li>"
+		           
+		     }else{
+		       
+		       var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/S_"+obj.uuid +"_"+obj.fileName);
+		       
+		       var originPath = obj.uploadPath+ "\\"+obj.uuid +"_"+obj.fileName;
+		       
+		       originPath = originPath.replace(new RegExp(/\\/g),"/");
+		       
+		       str += "<li><a href=\"javascript:showImage(\'"+originPath+"\')\">"+
+		              "<img src='display?fileName="+fileCallPath+"'></a>"+
+		              "<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"+
+		              "<li>";
+		     }
+		   });
+		   
+		   uploadResult.append(str);
 		}
 		
 		/* # 첨부파일 삭제 */
@@ -169,7 +176,7 @@
 			return true;
 		}
 	
-		/* # 파일 업로드 */
+		/* # 파일 업로드 버튼 */
 		var cloneObj = $(".uploadDiv").clone();
 		
 		$("#uploadBtn").on("click", function (e) {

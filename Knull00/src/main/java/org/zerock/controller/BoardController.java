@@ -1,5 +1,8 @@
 package org.zerock.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -88,8 +91,11 @@ public class BoardController {
 	@PostMapping("/remove")
 	public String delete(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("삭제 처리.......");
+		
+		List<BoardAttachVO> attachList = service.getAttachList(bno);
 
 		if(service.remove(bno)) {
+			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "sucess");
 		}
 		
@@ -105,6 +111,33 @@ public class BoardController {
 		log.info("첨부파일 게시글 번호 : " + bno);
 		
 		return new ResponseEntity<>(service.getAttachList(bno),HttpStatus.OK);
+	}
+	
+	/* # 첨부 파일 삭제 */
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		log.info("첨부 파일 삭제....");
+		log.info(attachList);
+		
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\"+attach.getUuid()+"_"+attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumNail = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\S_"+attach.getUuid()+"_"+attach.getFileName());
+					Files.delete(thumNail);
+				}
+			} catch (Exception e) {
+				log.error("첨부 파일 삭제 실패...." + e.getMessage());
+			}
+		});
+		
 	}
 	
 }

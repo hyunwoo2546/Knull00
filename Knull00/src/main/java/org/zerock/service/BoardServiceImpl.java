@@ -55,12 +55,24 @@ log.info("register...." + board);
 	}
 
 	/* # 게시글 수정 */
+	@Transactional
 	@Override
 	public boolean modify(BoardVO board) {
 		
 		log.info("수정......" + board);
 		
-		return mapper.update(board) == 1;
+		attachMapper.deleteAll(board.getBno());
+		
+		boolean modifyResult = mapper.update(board) == 1;
+		
+		if(modifyResult && board.getAttachList() != null && board.getAttachList().size() > 0) {
+			board.getAttachList().forEach(attach -> {
+				attach.setBno(board.getBno());
+				attachMapper.insert(attach);
+			});
+		}
+		
+		return modifyResult;
 	}
 
 	/* # 게시글 삭제 */
@@ -68,6 +80,8 @@ log.info("register...." + board);
 	public boolean remove(Long bno) {
 		
 		log.info("삭제......" + bno);
+		
+		attachMapper.deleteAll(bno);
 		
 		return mapper.delete(bno) == 1;
 	}

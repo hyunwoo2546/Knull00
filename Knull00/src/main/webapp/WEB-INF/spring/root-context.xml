@@ -51,7 +51,9 @@
 		
 	<context:component-scan base-package="org.zerock.service"></context:component-scan>
 	<context:component-scan base-package="org.zerock.aop"></context:component-scan>
+	<context:component-scan base-package="org.zerock.task"></context:component-scan>
+	
+	<task:annotation-driven/>
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-		
 </beans>

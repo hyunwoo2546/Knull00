@@ -11,7 +11,6 @@ import org.zerock.domain.ReplyVO;
 import org.zerock.mapper.BoardMapper;
 import org.zerock.mapper.ReplyMapper;
 
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service

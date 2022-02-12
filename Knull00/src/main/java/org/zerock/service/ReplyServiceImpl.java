@@ -18,17 +18,18 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ReplyServiceImpl implements ReplyService{
 
-	@Setter(onMethod_ = @Autowired)
+	@Autowired
 	private ReplyMapper mapper;
 	
-	@Setter(onMethod_ = @Autowired)
+	@Autowired
 	private BoardMapper boardMapper;
 
 	@Override
-	@Transactional
 	public int register(ReplyVO vo) {
 		
 		log.info("殿废 贸府....." + vo);
+		
+		boardMapper.updateReplyCnt(vo.getBno(), 1);
 		
 		return mapper.insert(vo);
 	}
@@ -54,6 +55,10 @@ public class ReplyServiceImpl implements ReplyService{
 	public int remove(Long rno) {
 		
 		log.info("昏力 贸府 ...." +rno);
+		
+		ReplyVO vo = mapper.read(rno);
+		
+		boardMapper.updateReplyCnt(vo.getBno(), -1);
 		
 		return mapper.delete(rno);
 	}

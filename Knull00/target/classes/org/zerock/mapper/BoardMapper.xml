@@ -100,6 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bno > 0
 	</select>
 	
+	<!-- # 댓글 갯수 -->
 	<update id="updateReplyCnt">
 		update tbl_board set replycnt = replycnt + #{amount}
 		where bno = #{bno}

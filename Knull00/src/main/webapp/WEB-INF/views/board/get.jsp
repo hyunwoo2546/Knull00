@@ -227,7 +227,7 @@
 				  
 				  showList(1);
 				  
-				  /* # 댓글 Main */
+				  /* # 댓글 목록 */
 				  function showList(page) {
 					  console.log("show list : " + page);
 					  

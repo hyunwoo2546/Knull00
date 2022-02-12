@@ -1,38 +1,19 @@
 package org.zerock.controller;
 
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.zerock.domain.Ticket;
 
-import lombok.extern.log4j.Log4j;
+import lombok.AllArgsConstructor;
 
-@RestController
-@RequestMapping("/sample")
-@Log4j
+@Controller
+@RequestMapping("/sample/*")
+@AllArgsConstructor
 public class TestController {
 
-	/*
-	 * @GetMapping("/getTest/{cat}/{pid}") public String[] getTest(
-	 * 
-	 * @PathVariable("cat") String cat,
-	 * 
-	 * @PathVariable("pid") Integer pid) {
-	 * 
-	 * return new String[] { "catagori" + cat, "productid" + pid };
-	 * 
-	 * }
-	 */
-	
-	@PostMapping("/ticket")
-	public Ticket convert(@RequestBody Ticket ticket) {
-		
-		log.info("convert........" + ticket);
-		
-		return ticket;
-		
-	} 
+	/* # 게시판 리스트 */
+	@GetMapping("/list")
+	public void list2() {
+	}
 	
 }

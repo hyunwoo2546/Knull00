@@ -1,7 +1,6 @@
 package org.zerock.mapper;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -5,15 +5,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/sample/*")
-@AllArgsConstructor
+@Log4j
 public class TestController {
 
-	/* # 게시판 리스트 */
-	@GetMapping("/list")
-	public void list2() {
+	@GetMapping("/all")
+	public void doAll() {
+		log.info("do all can access everybody");
+	}
+	
+	@GetMapping("/member")
+	public void doMember() {
+		log.info("logined member");
+	}
+	
+	@GetMapping("/admin")
+	public void doAdmin() {
+		log.info("admin only");
 	}
 	
 }

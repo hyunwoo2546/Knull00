@@ -30,9 +30,10 @@
 	<br/>
 	<footer>
 		<div>
-			<form action="exUploadPost" method="post" enctype="multipart/form-data">
-				<input type="file" name="files" multiple><br/>
-				<input type="submit">
+			<form action="/board/list" method="get" enctype="multipart/form-data">
+				<button type="submit">
+				게시판 이동
+				</button>
 			</form>
 		</div>
 	</footer>

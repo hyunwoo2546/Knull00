@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.zerock.domain.BoardAttachVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardAttachMapper;
@@ -87,6 +88,15 @@ log.info("register...." + board);
 		log.info("전체 게시글 수....");
 		
 		return mapper.getTotalCount(cri);
+	}
+
+	/* # 첨부파일 목록 */
+	@Override
+	public List<BoardAttachVO> getAttachList(Long bno) {
+		
+		log.info("첨부파일이 등록된 해당 게시물 번호 : " + bno);
+		
+		return attachMapper.findByBno(bno);
 	}
 	
 }

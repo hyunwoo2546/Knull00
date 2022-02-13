@@ -6,6 +6,9 @@
 	<title>Home</title>
 	<link type="text/css" rel="stylesheet" href="resources/css/style.css">
 	<script type="text/javascript" src="resources/js/OuterJavaScript.js"></script>
+	<script type="text/javascript">
+		self.location = "/board/list";
+	</script>
 </head>
 <body>
 	<header>

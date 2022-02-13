@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,12 +51,14 @@ public class BoardController {
 	
 	/* # 글 등록 페이지 이동 */
 	@GetMapping("/register")
+	@PreAuthorize("isAuthenticated()")
 	public void register() {
 		
 	}
 	
 	/* # 글 등록 처리 */
 	@PostMapping("/register")
+	@PreAuthorize("isAuthenticated()")
 	public String register(BoardVO boardVO, RedirectAttributes rttr) {
 		
 		log.info("게시글 등록....." + boardVO);
@@ -76,11 +79,12 @@ public class BoardController {
 	
 	/* # 글 수정 */
 	@PostMapping("/modify")
-	public String modify(BoardVO boardVO, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	@PreAuthorize("principal.username == #board.writer")
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
-		log.info("게시글 수정......." + boardVO);
+		log.info("게시글 수정......." + board);
 		
-		if(service.modify(boardVO)) {
+		if(service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
@@ -89,6 +93,7 @@ public class BoardController {
 	
 	/* # 글 삭제 */
 	@PostMapping("/remove")
+	@PreAuthorize("principal.username == #writer")
 	public String delete(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("삭제 처리.......");
 		

@@ -12,7 +12,7 @@
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<bean id="customUserDetailsService"
-		class="org.zerock.security.CustomUserDetailService"></bean>
+		class="org.zerock.security.CustomUserDetailsService"></bean>
 
 
 	<security:http>
@@ -30,7 +30,6 @@
 
 		<security:form-login login-page="/customLogin" />
 
-
 		<security:logout logout-url="/customLogout"
 			invalidate-session="true" />
 
@@ -39,6 +38,7 @@
 
 		<security:logout logout-url="/customLogout"
 			invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
+			
 	</security:http>
 
 	<security:authentication-manager>

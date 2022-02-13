@@ -4,9 +4,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.PageDTO;
-import org.zerock.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -14,7 +11,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CommonController {
 
-	private BoardService service;
 	
 	/* # 접근 에러 */
 	@GetMapping("/accessError")

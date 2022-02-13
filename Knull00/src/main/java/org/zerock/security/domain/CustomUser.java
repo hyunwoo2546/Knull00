@@ -8,9 +8,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.zerock.domain.MemberVO;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class CustomUser extends User{
 
 	private static final long serialVersionUID = 1L;

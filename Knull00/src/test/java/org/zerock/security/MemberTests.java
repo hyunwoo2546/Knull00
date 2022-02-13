@@ -45,7 +45,7 @@ public class MemberTests {
 				con = dataSource.getConnection();
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setString(2, pwencoder.encode("pw" + i));
+				pstmt.setString(2, pwencoder.encode("pw"+i));
 				
 				if (i < 80) {
 					pstmt.setString(1, "user"+i);
@@ -83,7 +83,7 @@ public class MemberTests {
 				con = dataSource.getConnection();
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setString(2, pwencoder.encode("pw" + i));
+				pstmt.setString(2, pwencoder.encode("pw"+i));
 				
 				if (i < 80) {
 					pstmt.setString(1, "user"+i);

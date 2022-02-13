@@ -11,7 +11,7 @@ import org.zerock.security.domain.CustomUser;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class CustomUserDetailService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired
 	private MemberMapper mapper;
@@ -19,11 +19,11 @@ public class CustomUserDetailService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		log.warn("¿äÃ»µÈ UserName : " + username);;
+		log.warn("ìš”ì²­ëœ UserName : " + username);;
 		
 		MemberVO vo = mapper.read(username);
 		
-		log.warn("¿äÃ»µÈ maapper : " + vo);
+		log.warn("ìš”ì²­ëœ maapper : " + vo);
 		
 		return vo == null ? null : new CustomUser(vo);
 	}

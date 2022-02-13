@@ -35,23 +35,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<style>
-    .layer{
-  position:absolute;
-  left:40%;
-}
-</style>
-
 </head>
 
 <body>
 
-	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-		<div class="layer">
-			<a class="navbar-brand" href="../board/list" >스치면 인연, 스며들면 스폰지밥</a>
-		</div>
-	</nav>
-	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -71,11 +58,12 @@
 										name="password" type="password" value="">
 								</div>
 								<div class="checkbox">
-									<label> <input name="remember-me" type="checkbox">Remember Me
+									<label> <input name="remember-me" type="checkbox">Remember
+										Me
 									</label>
 								</div>
 								<!-- Change this to a button or input when using this as a form -->
-								<a href="#" class="btn btn-lg btn-success btn-block">Login</a>
+								<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
 							</fieldset>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
@@ -86,7 +74,8 @@
 			</div>
 		</div>
 	</div>
-	
+
+
 
 	<!-- jQuery -->
 	<script src="/resources/vendor/jquery/jquery.min.js"></script>
@@ -100,21 +89,26 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="/resources/dist/js/sb-admin-2.js"></script>
   <script>
+  
+  
+  
+  
   $(".btn-success").on("click", function(e){
     
     e.preventDefault();
     $("form").submit();
     
   });
+  
   </script>
   
-	<c:if test="${param.logout != null}">
-	      <script>
-	      $(document).ready(function(){
-	      	alert("로그아웃하였습니다.");
-	      });
-	      </script>
-	</c:if>  
+<c:if test="${param.logout != null}">
+      <script>
+      $(document).ready(function(){
+      	alert("로그아웃하였습니다.");
+      });
+      </script>
+</c:if>  
 
 </body>
 

@@ -11,11 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.MemberVO;
+import org.zerock.mapper.MemberMapper;
+
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml","file:src/main/webapp/WEB-INF/spring/security-context.xml"})
-		 
+@Log4j
 public class MemberTests {
 
 	@Autowired
@@ -23,6 +28,9 @@ public class MemberTests {
 	
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private MemberMapper mapper; 
 	
 	@Test
 	public void testInsertMember() {
@@ -99,4 +107,17 @@ public class MemberTests {
 		}
 		
 	}
+	
+	@Test
+	public void testRead() {
+		
+		MemberVO vo = mapper.read("admin90");
+		
+		log.info(vo);
+		
+		vo.getAuthList().forEach(authVO -> log.info(authVO));
+		
+	}
+	
+	
 }

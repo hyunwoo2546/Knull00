@@ -4,6 +4,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageDTO;
+import org.zerock.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -11,6 +14,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CommonController {
 
+	private BoardService service;
+	
 	/* # 접근 에러 */
 	@GetMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
@@ -38,6 +43,11 @@ public class CommonController {
 	@GetMapping("/customLogout")
 	public void logoutGET() {
 		log.info("로그아웃");
+	}
+	
+	@GetMapping("/sample/all")
+	public void doAll() {
+		
 	}
 	
 }

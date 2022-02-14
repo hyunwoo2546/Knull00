@@ -368,6 +368,7 @@
 	      });
 	    });
 	  
+	      
 		/* # 댓글 수정 */
 	    modalModBtn.on("click", function(e){
 	    	
@@ -404,6 +405,8 @@
 		/* # 댓글 삭제 */
 	   	modalRemoveBtn.on("click", function (e){
 	   	  
+	   	  var originalReplyer = modalInputReplyer.val();
+	   		
 	   	  var rno = modal.data("rno");
 	   	  
 	   	  console.log("RNO : " + rno);
@@ -414,8 +417,6 @@
 	   		  modal.modal("hide");
 	   		  return;
 	   	  }
-	   	  
-	   	  var originalReplyer = modalInputReplyer.val();
 	   	  
 	   	  console.log("Original Replyer : " + originalReplyer); // 댓글의 원래 작성자
 	   	  

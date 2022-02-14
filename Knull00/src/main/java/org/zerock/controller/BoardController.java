@@ -93,8 +93,8 @@ public class BoardController {
 	
 	/* # 臂 昏力 */
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #writer")
-	public String delete(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	@PreAuthorize("principal.username == #board.writer")
+	public String delete(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, BoardVO board) {
 		log.info("昏力 贸府.......");
 		
 		List<BoardAttachVO> attachList = service.getAttachList(bno);

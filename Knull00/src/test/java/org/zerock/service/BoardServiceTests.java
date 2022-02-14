@@ -52,10 +52,12 @@ public class BoardServiceTests {
 		log.info(service.get(1L));
 	}
 	
-	@Test
-	public void testDelete() {
-		log.info("昏力 柳青....." + service.remove(2L));
-	}
+	
+	  @Test 
+	  public void testDelete() {
+		  log.info("昏力 柳青....." + service.remove(2L));
+	  }
+	 
 	
 	@Test
 	public void testUpdate() {

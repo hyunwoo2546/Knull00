@@ -522,7 +522,7 @@
 		
 		/* # 원본 이미지 출력 */
 		function showImage(fileCallPath) {
-			alert(fileCallPath);
+			alert('다운로드 이미지.');
 			
 			$(".bigPictureWrapper").css("display","flex").show();
 			

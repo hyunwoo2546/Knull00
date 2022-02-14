@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">안녕?
-                            <button id = 'regBtn' type="button" class="btn btn-primary pull-right">
+                            <button id = 'regBtn' type="button" class="btn btn-primary btn-xs pull-right">
                             <font face="돋움">글 등록 페이지 이동</font>
                             </button>
                         </div>

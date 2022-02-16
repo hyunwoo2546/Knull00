@@ -9,7 +9,7 @@
   <ul>
       <li onclick="kakaoLogin();">
         <a href="javascript:void(0)">
-            <span>KAKAO LOGIN</span>
+            <span>카카오 로그인</span>
         </a>
       </li>
   </ul>
@@ -20,7 +20,7 @@
   function kakaoLogin() {
 
     $.ajax({
-        url: '/login/getKakaoAuthUrl',
+        url: '/login/oauth_kakao',
         type: 'get',
         async: false,
         dataType: 'text',

@@ -41,9 +41,4 @@ public class CommonController {
 		log.info("·Î±×¾Æ¿ô");
 	}
 	
-	@GetMapping("/sample/all")
-	public void doAll() {
-		
-	}
-	
 }

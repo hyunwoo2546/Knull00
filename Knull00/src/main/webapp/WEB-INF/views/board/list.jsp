@@ -48,6 +48,7 @@
                                 <!-- # /End 게시판 리스트 출력 -->
                             </table>
                             
+                            <!-- # 검색 -->
                             <div class="row">
                             	<div class="col-lg-12">
                             		<form action="/board/list" method="get" id = "searchForm">

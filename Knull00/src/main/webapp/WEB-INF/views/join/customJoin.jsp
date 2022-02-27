@@ -68,7 +68,7 @@
     });	  
    
   </script>
-    </body>
+  </body>
     
     
 </html>
